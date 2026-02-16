@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Recommendation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            background-color: #1A2B3C;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .search-container {
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-container input {
+            border: none;
+            outline: none;
+            padding: 8px 0;
+            width: 250px;
+            font-size: 14px;
+        }
+        
+        .search-container input::placeholder {
+            color: #999;
+        }
+        
+        .btn-search {
+            border: none;
+            background: none;
+            color: #0066CC;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+        
+        .btn-clear {
+            border: none;
+            background: none;
+            color: #0066CC;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+        
+        .btn-search:hover, .btn-clear:hover {
+            text-decoration: underline;
+        }
+
+        /* Home Page Styles */
+        .hero-section {
+            height: calc(100vh - 70px);
+            background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+        }
+
+        /* Social Media Icons - Left Side */
+        .social-icons {
+            position: absolute;
+            left: 30px;
+            bottom: 50px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: #1A2B3C;
+            transform: translateY(-5px);
+            border-color: white;
+        }
+
+       
+
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            color: white;
+            animation: fadeInUp 1s ease-out;
+            margin-left: 80px;
+        }
+
+        .intro-content h1 {
+            font-size: 68px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .intro-content h1 span {
+            display: block;
+            font-size: 56px;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .intro-content h1 .dream {
+            font-weight: bold;
+            font-size: 68px;
+        }
+
+        .intro-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            max-width: 500px;
+            opacity: 0.9;
+        }
+
+        .intro-highlight {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 45px;
+            background-color: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: #1A2B3C;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-container input {
+                width: 100%;
+            }
+
+            .intro-content h1 {
+                font-size: 42px;
+            }
+
+            .intro-content h1 .dream {
+                font-size: 42px;
+            }
+
+            .hero-section {
+                padding: 0 20px;
+            }
+
+            .social-icons {
+                left: 15px;
+                gap: 15px;
+            }
+
+            .intro-content {
+                margin-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">TravelBloom</div>
+        
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" placeholder="Enter a destination or keyword" id="searchInput">
+            <button class="btn-search" onclick="searchRecommendations()">Search</button>
+            <button class="btn-clear" onclick="clearResults()">Clear</button>
+        </div>
+    </div>
+
+    <!-- Home Page Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        
+        <div class="intro-content">
+            <span class="intro-highlight">EXPLORE</span>
+            <h1>
+                <span class="dream">DREAM</span>
+                DESTINATION
+            </h1>
+            <p>It encourages exploration, creativity and self-expression. Landscape, wildlife and cultural experiences await you in this destination. Discover the beauty of nature and culture. Book your trip today!</p>
+            <a href="#" class="cta-button">BOOK NOW</a>
+        </div>
+    </section>
+    
+    <script>
+        function searchRecommendations() {
+            // Search functionality will be implemented here
+            alert('Searching for: ' + document.getElementById('searchInput').value);
+        }
+        
+        function clearResults() {
+            document.getElementById('searchInput').value = '';
+            alert('Search cleared');
+        }
+    </script>
+</body>
+</html>
