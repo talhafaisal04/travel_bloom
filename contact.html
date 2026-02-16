@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Recommendation - Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            background-color: #1A2B3C;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Contact Us Page Styles */
+        .contact-page {
+            background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: calc(100vh - 70px);
+            position: relative;
+            padding: 40px 50px;
+        }
+
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Social Media Icons - Left Side */
+        .social-icons {
+            position: absolute;
+            left: 30px;
+            top: 100px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: #1A2B3C;
+            transform: translateY(-5px);
+            border-color: white;
+        }
+
+        /* Vertical Line */
+        .vertical-line {
+            position: absolute;
+            left: 48px;
+            top: 280px;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(to bottom, white, transparent);
+            z-index: 10;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-left: 80px;
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        /* Left Section - Contact Title and Text */
+        .contact-left {
+            flex: 1;
+            color: white;
+        }
+
+        .contact-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 400px;
+        }
+
+        /* Right Section - Contact Form */
+        .contact-right {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4A9EFF;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #4A9EFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0066CC;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+                margin-left: 60px;
+            }
+            
+            .contact-left {
+                width: 100%;
+            }
+            
+            .contact-right {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .contact-page {
+                padding: 30px 20px;
+            }
+            
+            .contact-title {
+                font-size: 36px;
+            }
+            
+            .social-icons {
+                left: 15px;
+                top: 80px;
+                gap: 15px;
+            }
+            
+            .vertical-line {
+                left: 33px;
+                top: 260px;
+                height: 60px;
+            }
+            
+            .content-wrapper {
+                margin-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar without search bar -->
+    <div class="navbar">
+        <div class="logo">TravelBloom</div>
+        
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        
+        <!-- Empty div to maintain spacing -->
+        <div style="width: 250px;"></div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div class="contact-page">
+        <div class="dark-overlay"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <!-- Vertical decorative line -->
+        <div class="vertical-line"></div>
+        
+        <div class="content-wrapper">
+            <!-- Left Section: CONTACT US text -->
+            <div class="contact-left">
+                <h1 class="contact-title">CONTACT US</h1>
+                <p class="contact-subtitle">Get in touch</p>
+            </div>
+            
+            <!-- Right Section: Contact Form -->
+            <div class="contact-right">
+                <form id="contactForm" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Form submission handler
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (name && email && message) {
+                alert('Thank you for contacting us, ' + name + '! We will get back to you soon.');
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+        
+        // Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                if(this.textContent === 'Contact Us') {
+                    alert('You are on the Contact Us page');
+                } else if(this.textContent === 'About Us') {
+                    alert('Navigating to About Us page');
+                } else if(this.textContent === 'Home') {
+                    alert('Navigating to Home page');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
